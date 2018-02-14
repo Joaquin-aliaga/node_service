@@ -1,0 +1,8 @@
+{  
+   "file": { 
+       "level": "debug", 
+       "maxsize": 256000000, 
+       "maxFiles": 3, 
+       "colorize": true 
+   } 
+}

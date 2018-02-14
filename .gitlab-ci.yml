@@ -1,0 +1,33 @@
+image: tmaier/docker-compose:latest
+
+stages:
+    - unit tests
+    - functional tests
+
+before_script:
+    - echo "before script"
+    - docker build -t registry:5000/node_service_${CI_COMMIT_REF_NAME} -f ./docker/deploy/Dockerfile .
+    - docker push registry:5000/node_service_${CI_COMMIT_REF_NAME}:latest
+    - docker build --no-cache -t registry:5000/node_service_db_${CI_COMMIT_REF_NAME} -f ./docker/db/Dockerfile .
+    - docker push registry:5000/node_service_db_${CI_COMMIT_REF_NAME}:latest
+    - docker pull registry:5000/node_service_${CI_COMMIT_REF_NAME}
+    - docker pull registry:5000/node_service_db_${CI_COMMIT_REF_NAME}
+    - docker pull registry:5000/test_service_develop:v1.0
+
+after_script:
+    - docker-compose down
+
+functional tests:
+    stage: functional tests
+    script:
+        - pwd
+        - echo "functional tests"
+        - docker-compose up -d db
+        - sleep 15
+        - docker-compose up -d node_service 
+        - sleep 3
+        - docker-compose logs node_service
+        - echo "*************************************************"
+        - docker-compose logs db
+        - docker-compose run tests
+

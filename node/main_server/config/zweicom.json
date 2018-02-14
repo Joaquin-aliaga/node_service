@@ -1,0 +1,76 @@
+{
+    "env": {
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "brace-style": [
+            "error",
+            "stroustrup"
+        ],
+        "object-curly-spacing": [
+            "error", 
+            "always"
+        ],
+        "array-bracket-spacing": [
+            "error", 
+            "always",
+            { "objectsInArrays": false }
+        ],
+        "comma-spacing": [
+            "error", 
+            { 
+                "before": false, 
+                "after": true 
+            }
+        ],
+        "key-spacing": ["error", {
+            "beforeColon": false,
+            "afterColon": true,
+            "mode": "strict"
+        }],
+        "block-spacing": "error",
+        "linebreak-style": [
+            "error", 
+            "unix"
+        ],
+        "space-before-function-paren": [
+            "error", 
+            "never"
+        ],
+        "space-in-parens": [
+            "error", 
+            "always",
+            { 
+                 "exceptions": ["{}","[]","()"] 
+            }
+        ],
+        "block-spacing": "error",
+        "no-func-assign": "off",
+        "no-useless-escape": "off",
+        "space-infix-ops": "error",
+        "eol-last": ["error", "always"],
+        // varibales que permiten funcionar tipos zw
+        "no-undef": "off",
+        "no-unused-vars": "off"
+    }
+}

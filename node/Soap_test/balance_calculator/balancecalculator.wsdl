@@ -1,0 +1,51 @@
+<definitions name="BalanceService"
+targetNamespace="http://www.examples.com/wsdl/BalanceService.wsdl"
+xmlns="http://schemas.xmlsoap.org/wsdl/"
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:tns="http://www.examples.com/wsdl/BalanceService.wsdl"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<message name="getBalanceRequest">
+<part name="id" type="xsd:int"/>
+<part name="phone_number" type="xsd:int"/>
+</message>
+
+<message name="getBalanceResponse">
+<part name="balance" type="xsd:int"/>
+</message>
+
+<portType name="Hello_PortType">
+<operation name="getBalance">
+<input message="tns:getBalanceRequest"/>
+<output message="tns:getBalanceResponse"/>
+</operation>
+</portType>
+
+<binding name="Hello_Binding" type="tns:Hello_PortType">
+<soap:binding style="rpc"
+transport="http://schemas.xmlsoap.org/soap/http"/>
+<operation name="getBalance">
+<soap:operation soapAction="getBalance"/>
+<input>
+<soap:body
+encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+namespace="urn:examples:BalanceService"
+use="encoded"/>
+</input>
+<output>
+<soap:body
+encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+namespace="urn:examples:BalanceService"
+use="encoded"/>
+</output>
+</operation>
+</binding>
+
+<service name="Balance_Service">
+<documentation>WSDL File for BalanceService</documentation>
+<port binding="tns:Hello_Binding" name="Balance_Port">
+<soap:address
+location="http://localhost:10000/balancecalculator/" />
+</port>
+</service>
+</definitions>

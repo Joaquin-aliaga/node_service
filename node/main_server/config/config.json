@@ -1,0 +1,33 @@
+{
+	"users_db": {
+		"host": "db",
+		"user": "root",
+		"password": "pass",
+		"database": "users",
+		"port": "3306"
+	},
+	"cdr_db": {
+		"host": "db",
+		"user": "root",
+		"password": "pass",
+		"database": "cdr",
+		"port": "3306"
+	},
+	"select_query": "SELECT nombre,numero_telefono FROM usuarios WHERE id_usuario= ?",
+	"insert_query": "INSERT INTO cdr SET ?",
+	"main_server": {
+		"port":"7015",
+		"url":"node_service",
+		"url_endpoint": "/api/id/:id"
+	},
+	"soap_server": {
+		"port":"10000",
+		"url":"http://localhost:10000/balancecalculator?wsdl",
+		"url_endpoint":"/balancecalculator",
+		"wsdl":"./balancecalculator.wsdl"
+	},
+	"http_server": {
+		"port":"10010",
+		"url":"http://localhost:10010/api/id/"
+	}
+}

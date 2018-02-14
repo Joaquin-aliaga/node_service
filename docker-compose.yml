@@ -1,0 +1,23 @@
+version: '3'
+services:
+    db:
+        image: "registry:5000/node_service_db_${CI_COMMIT_REF_NAME}"
+        environment:
+            - MYSQL_DATABASE=cdr
+            - MYSQL_ROOT_PASSWORD=pass
+        ports:
+            - "3306:3306"
+        stdin_open: true
+        tty: true
+
+    node_service:
+        image: "registry:5000/node_service_${CI_COMMIT_REF_NAME}"
+        ports:
+            - "7015:7015"
+        stdin_open: true
+        tty: true
+
+    tests:
+        image: "registry:5000/test_service_develop:v1.0"
+        stdin_open: true
+        tty: true
